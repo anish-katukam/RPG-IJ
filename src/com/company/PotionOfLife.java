@@ -13,7 +13,7 @@ public class PotionOfLife extends Potion {
         this.energy = 20;
         this.bloodlust = 3;
         try {
-            this.picture = ImageIO.read(new File("Resources/Potions/Life Potion.png"));
+            this.picture = ImageIO.read(new File("Resources/Potions/Potion Of Life.png"));
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

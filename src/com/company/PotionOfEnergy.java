@@ -11,7 +11,7 @@ public class PotionOfEnergy extends Potion {
         this.desc = "A yellow, light concoction. Invigorating and mildly sweet.";
         this.energy = 10;
         try {
-            this.picture = ImageIO.read(new File("Resources/Potions/Energy Potion.png"));
+            this.picture = ImageIO.read(new File("src/com/company/resources/Potions/Potion Of Energy.png"));
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
