@@ -16,8 +16,9 @@ import java.awt.event.MouseListener;
 public class OurGraphics {
     // instance variables
     final JLayeredPane mainPane; //the layered pane that all actions take place on
-    final JLabel menuPanel;
+    //final JLabel menuPanel;
     final JPanel menuPullout;
+    final JPanel inventoryPanel;
     final JButton inventory;
     final JButton stats;
     final JButton save;
@@ -30,6 +31,7 @@ public class OurGraphics {
     ImageDrawer openingImage;
 
     public OurGraphics() {
+
         mainPane = new JLayeredPane(); //Constructs a new instance of the JLayeredPane class with identifier mainPane
 
         menuOptionDisplay = new JPanel();//Constructs a new instance of the JPanel class with identifier menuOptionDisplay
@@ -40,15 +42,14 @@ public class OurGraphics {
         menuMouseOverButton.setBorderPainted(false);//Invokes the setBorderPainted method with explicit parameter of false on the menuButton object
         menuMouseOverButton.setBounds((int) Util.screen_size.getWidth() - 50, 0, 50, 50);
 
-        menuPanel = new JLabel(new ImageIcon("src/com/company/resources/Splashes/OpeningSplash.jpg")); //Constructs a new instance of the JPanel class with identifier menuPanel with explicit parameter of null (to reset any LayoutManagers)
-        menuPanel.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight());  //Invokes the setBounds method on the menuPanel object to make cover the whole area of any screen
-
+        //This begins the creation and modification of the menuPullout JPanel. The menuPullout is the panel that opens when the menu button is moused over.
+        //TODO: Animate sliding out, Make transparent border and body, Properly resize icons (found in resources folder) as they're jaggy now, Set proper border
         menuPullout = new JPanel();
         menuPullout.setBounds((int) Util.screen_size.getWidth() - 570, 0, 570, 100);
 
         inventory = new JButton(new ImageIcon("src/com/company/resources/Assets/inventory.png")); //Constructs a new instance of the JButton class with identifier inventory with explicit parameter of a string
         stats = new JButton(new ImageIcon("src/com/company/resources/Assets/stats.png")); //Constructs a new instance of the JButton class with identifier stats with explicit parameter of a string
-        save = new JButton(new ImageIcon("src/com/company/resources/Assets/save.png")); //Constructs a new instance of the JButton class with identifier save with explicit parameter of a string
+        save = new JButton(new ImageIcon("src/com/company/resources/Assets/save.png")); //Constructs a new instance of the JButton class with identifier save with explicit para meter of a string
         exit = new JButton(new ImageIcon("src/com/company/resources/Assets/exit.png")); //Constructs a new instance of the JButton class with identifier exit with explicit parameter of a string
         back = new JButton(new ImageIcon("src/com/company/resources/Assets/backicon.png")); //Constructs a new instance of the JButton class with identifier back with explicit parameter of a new empty instance of the ImageIcon class
 
@@ -77,9 +78,11 @@ public class OurGraphics {
         menuPullout.add(save);
         menuPullout.add(exit);
         menuPullout.add(back);
+        //This ends the creation and modification of the menuPullout panel.
 
-        openingImage = new ImageDrawer(0); //Constructs a new instance of the ImageDrawer class with identifier openingImage and explicit parameter of 0 to retrieve the first image
-        openingImage.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight()); //Invokes the setBounds method on the openingImage object to make cover the whole area of any screen
+        //This begins the creation and modification of the inventory panel. This is the panel that allows you to equip items and see your inventory.
+        inventoryPanel = new JPanel();
+
 
         class ButtonListener implements ActionListener //An inner class to respond to button presses
         {
@@ -92,6 +95,7 @@ public class OurGraphics {
 
                     mainPane.remove(mainPane.getIndexOf(menuPullout)); //Invokes the remove method onto the mainPane object with explicit parameter of the returned value from the invocation of the getIndexOf method on the mainPane object with explicit paramter of the menuPanel object
                     Starter.frame.repaint(); //Invokes the repaint method on the final variable of the Started class in order to repaint the main frame
+                    mainPane.add(menuMouseOverButton, new Integer(2));
 
                 }
                 if (e.getSource() == inventory) { //If the source of the button press is the inventory button
@@ -143,11 +147,12 @@ public class OurGraphics {
 
             public void mouseEntered(MouseEvent e) {
                 //Should open up the options pane and spawn and manage the buttons inside said pane
+                mainPane.remove(menuMouseOverButton);
                 mainPane.add(menuPullout, new Integer(2));
             }
 
             public void mouseExited(MouseEvent e) {
-
+                mainPane.add(menuMouseOverButton, new Integer(2));
             }
         }
 
@@ -195,11 +200,18 @@ public class OurGraphics {
 
     public JLayeredPane getGraphics(int chapterNum) //Given the explicit variable of the chapter number, will return the layered pane with the necessary elements
     {
+        openingImage = new ImageDrawer(0); //Constructs a new instance of the ImageDrawer class with identifier openingImage and explicit parameter of 0 to retrieve the first image
+        openingImage.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight()); //Invokes the setBounds method on the openingImage object to make cover the whole area of any screen
+
+        ImageDrawer dimBackground = new ImageDrawer(4);
+        dimBackground.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight());
+
         switch (chapterNum) {
+            //To dim the background, use the dullBackground image given by the ImageDrawer class.
+
             case 0: //If it is the opening chapter
             {
-                //mainPane.add(menuButton, new Integer(1)); //The menu button is added to the first layer
-                mainPane.add(menuMouseOverButton, new Integer(1));
+                mainPane.add(menuMouseOverButton, new Integer(2));
                 mainPane.add(openingImage, new Integer(0)); //The opening image is added to the bottom layer;
                 return mainPane; //The pane is returned
 

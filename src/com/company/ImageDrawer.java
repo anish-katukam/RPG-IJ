@@ -8,16 +8,17 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageDrawer extends JComponent {
-    public static BufferedImage[] listOfImages = new BufferedImage[4]; //array of images
+    public static BufferedImage[] listOfImages = new BufferedImage[5]; //array of images
     private int image_index; //index of image in array
 
     public ImageDrawer(int index) {
         try {
             //get all images from resources folder and resize to screen size, add them to array
             listOfImages[0] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/Splashes/OpeningSplash.jpg")));
-            listOfImages[1] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/chapter1.jpg")));
-            listOfImages[2] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/chapter2.jpg")));
-            listOfImages[3] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/chapter3.jpg")));
+            listOfImages[1] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/Splashes/chapter1.jpg")));
+            listOfImages[2] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/Splashes/chapter2.jpg")));
+            listOfImages[3] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/Splashes/chapter3.jpg")));
+            listOfImages[4] = Util.resizeImg(Util.screen_size, ImageIO.read(new File("src/com/company/resources/Splashes/dimBackground.png")));
         } catch (IOException e) {
         }
 
