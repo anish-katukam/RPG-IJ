@@ -24,11 +24,13 @@ public class OurGraphics {
     final JButton save;
     final JButton exit;
     final JButton back;
+    final JButton menuBack;
     final JButton menuMouseOverButton;
     final JPanel menuOptionDisplay;
 
 
     ImageDrawer openingImage;
+    ImageDrawer dimBackground;
 
     public OurGraphics() {
 
@@ -42,6 +44,13 @@ public class OurGraphics {
         menuMouseOverButton.setBorderPainted(false);//Invokes the setBorderPainted method with explicit parameter of false on the menuButton object
         menuMouseOverButton.setBounds((int) Util.screen_size.getWidth() - 50, 0, 50, 50);
 
+        openingImage = new ImageDrawer(0); //Constructs a new instance of the ImageDrawer class with identifier openingImage and explicit parameter of 0 to retrieve the first image
+        openingImage.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight()); //Invokes the setBounds method on the openingImage object to make cover the whole area of any screen
+
+        dimBackground = new ImageDrawer(4);
+        dimBackground.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight());
+
+
         //This begins the creation and modification of the menuPullout JPanel. The menuPullout is the panel that opens when the menu button is moused over.
         //TODO: Animate sliding out, Make transparent border and body, Properly resize icons (found in resources folder) as they're jaggy now, Set proper border
         menuPullout = new JPanel();
@@ -52,6 +61,13 @@ public class OurGraphics {
         save = new JButton(new ImageIcon("src/com/company/resources/Assets/save.png")); //Constructs a new instance of the JButton class with identifier save with explicit para meter of a string
         exit = new JButton(new ImageIcon("src/com/company/resources/Assets/exit.png")); //Constructs a new instance of the JButton class with identifier exit with explicit parameter of a string
         back = new JButton(new ImageIcon("src/com/company/resources/Assets/backicon.png")); //Constructs a new instance of the JButton class with identifier back with explicit parameter of a new empty instance of the ImageIcon class
+
+
+        menuBack = new JButton(new ImageIcon("src/com/company/resources/Assets/backicon.png"));
+        menuBack.setBorderPainted(false);
+        menuBack.setFocusPainted(false);
+        menuBack.setContentAreaFilled(false);
+        menuBack.setBounds((int) Util.screen_size.getWidth() - 75, 25, 50, 50);
 
         inventory.setBorderPainted(false);
         inventory.setFocusPainted(false);
@@ -76,8 +92,8 @@ public class OurGraphics {
         menuPullout.add(inventory);
         menuPullout.add(stats);
         menuPullout.add(save);
-        menuPullout.add(exit);
         menuPullout.add(back);
+        menuPullout.add(exit);
         //This ends the creation and modification of the menuPullout panel.
 
         //This begins the creation and modification of the inventory panel. This is the panel that allows you to equip items and see your inventory.
@@ -92,15 +108,22 @@ public class OurGraphics {
                     System.exit(0); //Invokes the exit method on the System class with explicit parameter 0 to exit the game
                 }
                 if (e.getSource() == back) { //If the source of the button press is the back button
-
                     mainPane.remove(mainPane.getIndexOf(menuPullout)); //Invokes the remove method onto the mainPane object with explicit parameter of the returned value from the invocation of the getIndexOf method on the mainPane object with explicit paramter of the menuPanel object
                     Starter.frame.repaint(); //Invokes the repaint method on the final variable of the Started class in order to repaint the main frame
                     mainPane.add(menuMouseOverButton, new Integer(2));
 
                 }
                 if (e.getSource() == inventory) { //If the source of the button press is the inventory button
-
-
+                    mainPane.add(dimBackground, new Integer(2));
+                    mainPane.remove(mainPane.getIndexOf(menuPullout));
+                    mainPane.remove(mainPane.getIndexOf(menuMouseOverButton));
+                    mainPane.add(menuBack, new Integer(3));
+                }
+                if (e.getSource() == menuBack) {
+                    mainPane.remove(mainPane.getIndexOf(dimBackground));
+                    mainPane.remove(mainPane.getIndexOf(menuBack));
+                    Starter.frame.repaint();
+                    mainPane.add(menuMouseOverButton, new Integer(2));
                 }
             }
         }
@@ -152,7 +175,7 @@ public class OurGraphics {
             }
 
             public void mouseExited(MouseEvent e) {
-                mainPane.add(menuMouseOverButton, new Integer(2));
+
             }
         }
 
@@ -174,8 +197,7 @@ public class OurGraphics {
             }
 
             public void mouseExited(MouseEvent e) {
-//                mainPane.remove(mainPane.getIndexOf(menuPullout));
-//                Starter.frame.repaint();
+                mainPane.add(menuMouseOverButton, new Integer(2));
             }
         }
 
@@ -186,6 +208,9 @@ public class OurGraphics {
         exit.addActionListener(new ButtonListener()); //Invokes the addActionListener method onto the exit object with the explicit parameter of a new instance of the inner ButtonListener class
         menuMouseOverButton.addMouseListener(new MenuButtonListener());
         back.addActionListener(new ButtonListener()); //Invokes the addActionListener method onto the back object with the explicit parameter of a new instance of the inner ButtonListener class
+        inventory.addActionListener(new ButtonListener());
+
+        menuBack.addActionListener(new ButtonListener());
 
         SaveGame gameSave = new SaveGame(save, Inventory.getListOfPotions()); //Constructs a new instance of the SaveGame class with identifier gameSave and explicit parameters of the save JButton object, and the list of potions from the Inventory class
         gameSave.saveGame(); //Invokes the saveGame method onto the gameSave object
@@ -200,11 +225,7 @@ public class OurGraphics {
 
     public JLayeredPane getGraphics(int chapterNum) //Given the explicit variable of the chapter number, will return the layered pane with the necessary elements
     {
-        openingImage = new ImageDrawer(0); //Constructs a new instance of the ImageDrawer class with identifier openingImage and explicit parameter of 0 to retrieve the first image
-        openingImage.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight()); //Invokes the setBounds method on the openingImage object to make cover the whole area of any screen
 
-        ImageDrawer dimBackground = new ImageDrawer(4);
-        dimBackground.setBounds(0, 0, (int) Util.screen_size.getWidth(), (int) Util.screen_size.getHeight());
 
         switch (chapterNum) {
             //To dim the background, use the dullBackground image given by the ImageDrawer class.
