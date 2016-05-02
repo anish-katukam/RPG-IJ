@@ -63,11 +63,11 @@ public class OurGraphics {
         back = new JButton(new ImageIcon("src/com/company/resources/Assets/backicon.png")); //Constructs a new instance of the JButton class with identifier back with explicit parameter of a new empty instance of the ImageIcon class
 
 
-        menuBack = new JButton(new ImageIcon("src/com/company/resources/Assets/backicon.png"));
+        menuBack = new JButton(new ImageIcon("src/com/company/resources/Assets/backarrowfixed.png"));
         menuBack.setBorderPainted(false);
         menuBack.setFocusPainted(false);
         menuBack.setContentAreaFilled(false);
-        menuBack.setBounds((int) Util.screen_size.getWidth() - 75, 25, 50, 50);
+        menuBack.setBounds(25, 25, 75, 75);
 
         inventory.setBorderPainted(false);
         inventory.setFocusPainted(false);
