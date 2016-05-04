@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
 /**
  * Write a description of class Graphics here.
  *
- * @author (your name) Sukrit Arora
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class OurGraphics {
@@ -114,19 +114,17 @@ public class OurGraphics {
 
                 }
                 if (e.getSource() == inventory) { //If the source of the button press is the inventory button
-                    mainPane.add(dimBackground, new Integer(2));
-                    mainPane.remove(mainPane.getIndexOf(menuPullout));
-                    mainPane.remove(mainPane.getIndexOf(menuMouseOverButton));
-                    mainPane.add(menuBack, new Integer(3));
+                    dimScreen();
+                }
+                if (e.getSource() == stats) { //If the source of the button press is the inventory button
+                    dimScreen();
                 }
                 if (e.getSource() == menuBack) {
-                    mainPane.remove(mainPane.getIndexOf(dimBackground));
-                    mainPane.remove(mainPane.getIndexOf(menuBack));
-                    Starter.frame.repaint();
-                    mainPane.add(menuMouseOverButton, new Integer(2));
+                    brightenScreen();
                 }
             }
         }
+
 
         class MainPlayerMover implements MouseListener { //An inner class to respond to mouse events
 
@@ -205,16 +203,31 @@ public class OurGraphics {
         Starter.frame.addMouseListener(new MainPlayerMover()); //Invokes the addMouseListener method onto the the final object frame from the starter class with the explicit parameter of a new instance of the inner MainPlayerMover class
 
         menuPullout.addMouseListener(new AutoCloser());
-        exit.addActionListener(new ButtonListener()); //Invokes the addActionListener method onto the exit object with the explicit parameter of a new instance of the inner ButtonListener class
         menuMouseOverButton.addMouseListener(new MenuButtonListener());
+
+        stats.addActionListener(new ButtonListener());
         back.addActionListener(new ButtonListener()); //Invokes the addActionListener method onto the back object with the explicit parameter of a new instance of the inner ButtonListener class
         inventory.addActionListener(new ButtonListener());
-
+        exit.addActionListener(new ButtonListener()); //Invokes the addActionListener method onto the exit object with the explicit parameter of a new instance of the inner ButtonListener class
         menuBack.addActionListener(new ButtonListener());
 
         SaveGame gameSave = new SaveGame(save, Inventory.getListOfPotions()); //Constructs a new instance of the SaveGame class with identifier gameSave and explicit parameters of the save JButton object, and the list of potions from the Inventory class
         gameSave.saveGame(); //Invokes the saveGame method onto the gameSave object
 
+    }
+
+    private void dimScreen() {
+        mainPane.add(dimBackground, new Integer(2));
+        mainPane.remove(mainPane.getIndexOf(menuPullout));
+        mainPane.remove(mainPane.getIndexOf(menuMouseOverButton));
+        mainPane.add(menuBack, new Integer(3));
+    }
+
+    private void brightenScreen() {
+        mainPane.remove(mainPane.getIndexOf(dimBackground));
+        mainPane.remove(mainPane.getIndexOf(menuBack));
+        Starter.frame.repaint();
+        mainPane.add(menuMouseOverButton, new Integer(2));
     }
 
     public void addEntity(Entity e) {
