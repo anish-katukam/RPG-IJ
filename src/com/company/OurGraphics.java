@@ -36,6 +36,8 @@ public class OurGraphics {
 
     public OurGraphics() {
         JFXPanel fxPanel = new JFXPanel();
+        Music.fetchTracks();
+
         mainPane = new JLayeredPane(); //Constructs a new instance of the JLayeredPane class with identifier mainPane
 
         menuOptionDisplay = new JPanel();//Constructs a new instance of the JPanel class with identifier menuOptionDisplay
@@ -96,6 +98,8 @@ public class OurGraphics {
         menuPullout.add(save);
         menuPullout.add(back);
         menuPullout.add(exit);
+
+        menuPullout.setOpaque(false);
         //This ends the creation and modification of the menuPullout panel.
 
         //This begins the creation and modification of the inventory panel. This is the panel that allows you to equip items and see your inventory.
@@ -197,7 +201,7 @@ public class OurGraphics {
             }
 
             public void mouseExited(MouseEvent e) {
-                mainPane.add(menuMouseOverButton, new Integer(2));
+
             }
         }
 
@@ -221,7 +225,6 @@ public class OurGraphics {
     private void dimScreen() {
         mainPane.add(dimBackground, new Integer(2));
         mainPane.remove(mainPane.getIndexOf(menuPullout));
-        mainPane.remove(mainPane.getIndexOf(menuMouseOverButton));
         mainPane.add(menuBack, new Integer(3));
     }
 
@@ -247,7 +250,7 @@ public class OurGraphics {
 
             case 0: //If it is the opening chapter
             {
-                Music.playTrack();
+                Music.playIntro();
                 mainPane.add(menuMouseOverButton, new Integer(2));
                 mainPane.add(openingImage, new Integer(0)); //The opening image is added to the bottom layer;
                 return mainPane; //The pane is returned
