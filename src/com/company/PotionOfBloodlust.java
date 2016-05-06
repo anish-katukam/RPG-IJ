@@ -11,7 +11,7 @@ public class PotionOfBloodlust extends Potion {
         this.desc = "A thick, violent shade of red, it seems to anger you just looking at it.";
         this.bloodlust = 1;
         try {
-            this.picture = ImageIO.read(new File("/src/com/company/resources/Potions/Potion Of Bloodlust.png"));
+            this.picture = ImageIO.read(new File("src/com/company/resources/Potions/Potion Of Bloodlust.png"));
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

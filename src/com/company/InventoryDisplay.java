@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class InventoryDisplay {
-    public static void InventoryDisplay() {
+    public static JPanel InventoryDisplay() {
         JPanel panel = new JPanel(new GridLayout(5, 1));
 
         JLayeredPane healthPotionPane = new JLayeredPane();
@@ -20,8 +20,8 @@ public class InventoryDisplay {
             ImageIcon healthPotion = new ImageIcon(ImageIO.read(new File("src/com/company/resources/Potions/Potion Of Health.png")));
             ImageIcon energyPotion = new ImageIcon(ImageIO.read(new File("src/com/company/resources/Potions/Potion Of Energy.png")));
             ImageIcon bloodlustPotion = new ImageIcon(ImageIO.read(new File("src/com/company/resources/Potions/Potion Of Bloodlust.png")));
-            ImageIcon rejuvenationPotion = new ImageIcon(ImageIO.read(new File("src/com/company/Potions/Potion Of Rejuvenation.png")));
-            ImageIcon lifePotion = new ImageIcon(ImageIO.read(new File("src/com/company/Potions/Potion Of Life.png")));
+            ImageIcon rejuvenationPotion = new ImageIcon(ImageIO.read(new File("src/com/company/resources/Potions/Potion Of Rejuvenation.png")));
+            ImageIcon lifePotion = new ImageIcon(ImageIO.read(new File("src/com/company/resources/Potions/Potion Of Life.png")));
 
             JLabel healthPotionImage = new JLabel(healthPotion);
             JLabel energyPotionImage = new JLabel(energyPotion);
@@ -68,6 +68,7 @@ public class InventoryDisplay {
         int numberOfRejuvenationPotion = 0;
         int numberOfLifePotion = 0;
 
+        Inventory.addItem(new PotionOfBloodlust());
         for (Item s : Inventory.getListOfPotions()) {
             if (s.getName() != null) {
                 if (s.getName().equals("Potion of Health")) {
@@ -121,5 +122,7 @@ public class InventoryDisplay {
         panel.add(lifePotionPane);
 
         panel.setVisible(true);
+
+        return panel;
     }
 }

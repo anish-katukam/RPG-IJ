@@ -20,7 +20,6 @@ public class OurGraphics {
     final JLayeredPane mainPane; //the layered pane that all actions take place on
     //final JLabel menuPanel;
     final JPanel menuPullout;
-    final JPanel inventoryPanel;
     final JButton inventory;
     final JButton stats;
     final JButton save;
@@ -30,6 +29,7 @@ public class OurGraphics {
     final JButton menuMouseOverButton;
     final JPanel menuOptionDisplay;
 
+    JPanel inventoryPanel;
 
     ImageDrawer openingImage;
     ImageDrawer dimBackground;
@@ -37,6 +37,7 @@ public class OurGraphics {
     public OurGraphics() {
         JFXPanel fxPanel = new JFXPanel();
         Music.fetchTracks();
+        Inventory.initializeInfoPanel();
 
         mainPane = new JLayeredPane(); //Constructs a new instance of the JLayeredPane class with identifier mainPane
 
@@ -102,9 +103,6 @@ public class OurGraphics {
         menuPullout.setOpaque(false);
         //This ends the creation and modification of the menuPullout panel.
 
-        //This begins the creation and modification of the inventory panel. This is the panel that allows you to equip items and see your inventory.
-        inventoryPanel = new JPanel();
-
 
         class ButtonListener implements ActionListener //An inner class to respond to button presses
         {
@@ -122,6 +120,8 @@ public class OurGraphics {
                 if (e.getSource() == inventory) { //If the source of the button press is the inventory button
                     dimScreen();
                     Music.playMenu();
+                    inventoryPanel = Inventory.getInfoPanel();
+                    mainPane.add((inventoryPanel), new Integer(3));
                 }
                 if (e.getSource() == stats) { //If the source of the button press is the inventory button
                     dimScreen();
@@ -130,6 +130,8 @@ public class OurGraphics {
                 if (e.getSource() == menuBack) {
                     brightenScreen();
                     Music.stopMenu();
+                    mainPane.remove(mainPane.getIndexOf(inventoryPanel));
+
                 }
             }
         }

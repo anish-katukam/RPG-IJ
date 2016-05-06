@@ -1,8 +1,11 @@
 package com.company;
 
+import javax.swing.*;
+
 public class Inventory {
     private static TextIO t = new TextIO(); //static because only one
     private static Item[] backpack = new Item[25];
+    private static JPanel inventoryPanel = new JPanel();
 
     public static void modify(Entity a) {
         t.clear();
@@ -58,6 +61,7 @@ public class Inventory {
 
     public static Item[] getListOfPotions() {
         return backpack;
+
     }
 
     public static void setListOfPotions(Item[] i) {
@@ -96,6 +100,17 @@ public class Inventory {
             }
         }
         return potionExists;
+    }
+
+    public static void initializeInfoPanel() {
+        inventoryPanel.setBounds(300, 300, 1620, 780);
+        inventoryPanel.add(new JButton("SDSDGSDG"));
+        inventoryPanel.setOpaque(false);
+
+    }
+
+    public static JPanel getInfoPanel() {
+        return inventoryPanel;
     }
 }
 
