@@ -121,12 +121,15 @@ public class OurGraphics {
                 }
                 if (e.getSource() == inventory) { //If the source of the button press is the inventory button
                     dimScreen();
+                    Music.playMenu();
                 }
                 if (e.getSource() == stats) { //If the source of the button press is the inventory button
                     dimScreen();
+                    Music.playMenu();
                 }
                 if (e.getSource() == menuBack) {
                     brightenScreen();
+                    Music.stopMenu();
                 }
             }
         }
@@ -250,7 +253,7 @@ public class OurGraphics {
 
             case 0: //If it is the opening chapter
             {
-                Music.playIntro();
+                //Music.playIntro();
                 mainPane.add(menuMouseOverButton, new Integer(2));
                 mainPane.add(openingImage, new Integer(0)); //The opening image is added to the bottom layer;
                 return mainPane; //The pane is returned

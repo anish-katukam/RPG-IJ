@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Music {
 
     static MediaPlayer mediaPlayer;
-    static MediaPlayer inventoryPlayer;
+    static MediaPlayer menuPlayer;
 
     static ArrayList<Media> ambientTracks;
     static ArrayList<Media> battleTracks;
@@ -99,14 +99,13 @@ public class Music {
         mediaPlayer.play();
     }
 
-    public static void playInventory() {
-        inventoryPlayer = new MediaPlayer(theCloud);
-        inventoryPlayer.play();
+    public static void playMenu() {
+        menuPlayer = new MediaPlayer(theCloud);
+        menuPlayer.play();
     }
 
-    public static void stopInventory() {
-        inventoryPlayer = new MediaPlayer(theCloud);
-        inventoryPlayer.stop();
+    public static void stopMenu() {
+        menuPlayer.stop();
     }
 
     public static void playDeath() {
