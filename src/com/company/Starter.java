@@ -6,10 +6,6 @@ import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
-//import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
-//import javafx.embed.swing.JFXPanel;
-//import javafx.scene.*;
 
 public class Starter
 {
@@ -75,5 +71,5 @@ public class Starter
     {
         currentFrame = f;
     }
-    
+
 }

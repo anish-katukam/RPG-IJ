@@ -3,16 +3,16 @@ package com.company;
 import javax.swing.*;
 
 public class Inventory {
-    private static TextIO t = new TextIO(); //static because only one
+    //private static TextIO t = new TextIO(); //static because only one
     private static Item[] backpack = new Item[25];
     private static JPanel inventoryPanel = new JPanel();
 
     public static void modify(Entity a) {
-        t.clear();
+        //t.clear();
         int index = 0;
         int response = 0;
         if (!isEmpty()) {
-            t.getString("Your inventory is empty. Press enter to continue playing."); //check if its empty and cant change anything
+     //       t.getString("Your inventory is empty. Press enter to continue playing."); //check if its empty and cant change anything
         }
         while (index < backpack.length) {
             if (backpack[index] != null) {
@@ -21,8 +21,8 @@ public class Inventory {
             index++;
         }
         while (response != 42 && response < backpack.length && response >= 0 && backpack[response] != null) {
-            t.blank(1);
-            modulateItem(t.getInt("Simply type the number of the item you would like to examine. To exit, type 42."), a); //lets you modulate an item given proper input
+    //        t.blank(1);
+    //        modulateItem(t.getInt("Simply type the number of the item you would like to examine. To exit, type 42."), a); //lets you modulate an item given proper input
             modify(a);
         }
     }
@@ -35,7 +35,7 @@ public class Inventory {
             }
         }
         if (isFull()) {
-            t.say("Your backpack is full. Remove an item or something. "); //if full
+     //       t.say("Your backpack is full. Remove an item or something. "); //if full
         }
     }
 
@@ -44,7 +44,7 @@ public class Inventory {
         int response = 0;
         int[] shift = new int[25];
         int shiftIndex = 0;
-        t.say("Pick a potion:\n");
+     //   t.say("Pick a potion:\n");
 
         while (index < backpack.length) {
             if (backpack[index] instanceof Potion) {
@@ -54,7 +54,7 @@ public class Inventory {
             }
             index++;
         }
-        response = t.getInt("Pick a potion.");
+    //    response = t.getInt("Pick a potion.");
         return backpack[shift[response]];
 
     }
@@ -70,10 +70,10 @@ public class Inventory {
 
     public static void modulateItem(int index, Entity character) {
         Item i = backpack[index - 1];
-        i.explicate(t); //accesses overloaded method from items to print out name and desc of item
-        t.blank(1);
-        String response = t.getString("Type rm if you want to remove this item. Type equip to equip the item. Press enter to view your inventory.");
-        if (response.equals("rm")) {
+   //     i.explicate(t); //accesses overloaded method from items to print out name and desc of item
+   //     t.blank(1);
+      //  String response = t.getString("Type rm if you want to remove this item. Type equip to equip the item. Press enter to view your inventory.");
+   /*     if (response.equals("rm")) {
             for (int a = index - 1; a < 24; a++) {
                 backpack[a] = backpack[a + 1]; //when its removed, move everything else down
             }
@@ -81,7 +81,7 @@ public class Inventory {
             if (response.equals("equip")) {
                 i = character.replace(i);  //replace the item in loadout with this one
             }
-        }
+        }*/
     }
 
     public static boolean isFull() {
