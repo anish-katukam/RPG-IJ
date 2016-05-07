@@ -68,7 +68,7 @@ public class Battle {
     {
         t.clear(); //clear screen
         t.say("Victory!");
-        if (t.getInt("Collect dropped items from enemy? (YES-1/NO-2) The items dropped are: \n" + b.getWeapon().getName() + "\n" + b.getArmor().getName() + "\n" + b.getHat().getName() + "\n" + b.getRing().getName()) == 1)
+        if (t.getInt("Collect dropped items from enemy? (YES-1/NO-2) The items dropped are: \n"  + b.getRing().getName()) == 1)
         /*Ask user whether or not to pick up dropped items, and list said items*/ {
             b.drop(); //if so, add items to inventory
             t.say("Items collected!");

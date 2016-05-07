@@ -20,7 +20,7 @@ public class GameLogic {
      */
     public void exposition() {
         t.dramatic(2500, "We are a necromancer.");
-        t.dramatic(4000, "necromancy: a form of magic involving communication with the deceased – either by summoning their spirit as an apparition or raising them bodily");
+        t.dramatic(4000, "necromancy: a form of magic involving communication with the deceased ï¿½ either by summoning their spirit as an apparition or raising them bodily");
         t.dramatic(3000, "We have surpassed life. Most do this only once.");
         t.dramatic(3500, "We are not most.");
     }
@@ -45,9 +45,9 @@ public class GameLogic {
         t.dramatic(3500, "With a roar of rage, a draugr rose from the ground, holding a sceptre and prepared to attack.");
         t.dramatic(3500, "When we held power over the dead, we commanded legions of undead like this.");
         t.dramatic(3500, "With our power stolen, we must use other magic to quell our enemies.");                                    //dialogue
-        enemy = new Enemy("Draugr", 80, new WeaponT2(), new ArmorT2(), new RingOfHealth(), new HatOfHealth());  // new enemy for first battle
-        battle = new Battle(character, enemy);  //start battle
-        while (victor == null) //while battle undecided
+      //  enemy = new Enemy("Draugr", 80, new WeaponT2(), new ArmorT2(), new RingOfHealth(), new HatOfHealth());  // new enemy for first battle
+      //  battle = new Battle(character, enemy);  //start battle
+      /*  while (victor == null) //while battle undecided
         {
             victor = battle.promptUser(); //next step
         }
@@ -55,7 +55,7 @@ public class GameLogic {
             battle.collect(); //pick up dead persons items
         } else {
             outro(true); //you died, sucks to be you
-        }
+        }*/
         victor = null; //reset for next battle
         Inventory.modify(character); //give chance to organize inventory
         t.dramatic(3500, "We sense the land's hostility as well. It seems to be controlled by another.");
@@ -73,7 +73,7 @@ public class GameLogic {
         t.dramatic(2600, "The doors parted, creaking as they revealed a figure standing behind.");
         t.dramatic(3000, "We beheld a figure of clay and stone, clutching a great staff with energy glowing on its surface.");
         t.dramatic(2000, "We clutched our staff and approached.");
-        enemy = new Enemy("Earth Guardian", 90, new WeaponT2(), new ArmorT3(), new RingOfHealth(), new HatOfHealth());
+      /*  enemy = new Enemy("Earth Guardian", 90, new WeaponT2(), new ArmorT3(), new RingOfHealth(), new HatOfHealth());
         System.out.println(enemy.stats.health);
         battle = new Battle(character, enemy);
         while (victor == null) {
@@ -83,7 +83,7 @@ public class GameLogic {
             battle.collect();
         } else {
             outro(true);
-        }
+        }*/
         Inventory.modify(character);
         t.dramatic(2500, "Something was satisfying about the way its remnants melded back into the ground.");
         t.dramatic(2500, "We walked into the room, letting the doors close behind us with a resonating thud.");
@@ -94,9 +94,9 @@ public class GameLogic {
         t.dramatic(2500, "A massive whirlwind had formed around the tower, surrounding us");
         t.dramatic(2500, "From this vortex descended an ephemeral shape... one that moved too quickly to see");
         t.dramatic(2500, "My staff crackled with energy... I knew not what it was, or why, but I knew I had to fight it.");
-        enemy = new Enemy("Air Goddess", 100, new WeaponT4(), new ArmorT1(), new RingOfHealth(), new HatOfHealth());
-        System.out.println(enemy.stats.health);
-        battle = new Battle(character, enemy);
+      //  enemy = new Enemy("Air Goddess", 100, new WeaponT4(), new ArmorT1(), new RingOfHealth(), new HatOfHealth());
+      //  System.out.println(enemy.stats.health);
+     /*   battle = new Battle(character, enemy);
         victor = null;
         while (victor == null) {
             victor = battle.promptUser();
@@ -105,7 +105,7 @@ public class GameLogic {
             battle.collect();
         } else {
             outro(true);
-        }
+        }*/
         Inventory.modify(character);
         t.dramatic(2500, "The withered body of the enemy lay before me... With its dying breath it touched my forehead with its... arm, if one could describe the appendage as such.");
         t.dramatic(3000, "I transcended reality and witnessed the glory of the higher planes.");
