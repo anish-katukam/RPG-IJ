@@ -29,6 +29,10 @@ public class OurGraphics {
     final JButton menuMouseOverButton;
     final JPanel menuOptionDisplay;
 
+    int moveDuration;
+    Point destination;
+    double distance;
+
     JPanel inventoryPanel;
 
     ImageDrawer openingImage;
@@ -144,7 +148,10 @@ public class OurGraphics {
 
                 MoveThreader.cancel(); //Sid please comment code this
                 //GameLogic.character.moveTo(new Point((int) Util.screenPointAdjust(e.getPoint()).getX(), PiecewiseHandler.getY((int) Util.screenPointAdjust(e.getPoint()).getX(), Starter.getCurrentFrame())), 500);
-                GameLogic.character.moveTo(new Point(e.getX(), e.getY()), 500);//Update this to work with the proper piecewise handler.
+                destination = new Point(e.getX(), e.getY());
+                distance = Math.sqrt(Math.pow((destination.getX() - GameLogic.character.getX()), 2) + Math.pow((destination.getY() - GameLogic.character.getY()), 2));
+                //GameLogic.character.moveTo(destination, (int) distance / 500);//Update this to work with the proper piecewise handler.
+                GameLogic.character.moveTo(destination, 4000);//Update this to work with the proper piecewise handler.
             }
 
             public void mousePressed(MouseEvent e) {

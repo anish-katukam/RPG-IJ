@@ -53,9 +53,13 @@ public class Starter
         //         initFX(fxPanel); 
         //         frame.setDefaultfullScreenButtonOperation(JFrame.EXIT_ON_fullScreenButton);
 
-        GameLogic.character.setSprites(new String[] {"src/com/company/resources/Assets/character/front.PNG"});
+        GameLogic.character.setSprites(new String[] {"src/com/company/resources/Assets/character/front.PNG",
+                "src/com/company/resources/Assets/character/front1.PNG",
+                "src/com/company/resources/Assets/character/front2.PNG",
+                "src/com/company/resources/Assets/character/front3.PNG",
+                "src/com/company/resources/Assets/character/front4.PNG"});
         GameLogic.character.setPosition(100,100);
-        GameLogic.character.set_curr_sprite(0);
+
 
         //e.moveTo(new Point(500,500), 5000);
         graphics.addEntity(GameLogic.character);

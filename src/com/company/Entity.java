@@ -19,12 +19,40 @@ public class Entity extends JComponent//this class is used for every living thin
     protected Armor armor;
     protected BufferedImage curr_sprite;
     protected Stats stats; // object containing the stats used for damage calculations
-    protected BufferedImage sprites[] = new BufferedImage[4]; //4 sprites: 0 = motionless, 1 = walking left, 2 = walking right, 3 = low health
+    protected BufferedImage sprites[] = new BufferedImage[6]; //4 sprites: 0 = motionless, 1 = walking left, 2 = walking right, 3 = low health
     Random random = new Random(); //instance of random
 
     public Entity() //constructor (handled in subclasses)
     {
 
+    }
+
+    public void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        //g2.setClip((int)position.getX(), (int)position.getY(), get_curr_sprite().getWidth(), get_curr_sprite().getHeight());
+        g2.drawImage(get_curr_sprite(), (int) position.getX(), (int) position.getY(), this);
+    }
+
+    public BufferedImage get_curr_sprite() {
+        return curr_sprite;
+    }
+
+    public void set_curr_sprite(int index) {
+        curr_sprite = sprites[index];
+    }
+
+    public void moveTo(Point p, int duration) {
+        MoveThreader m = new MoveThreader(this, p, duration);
+
+    }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public void setPosition(int x, int y) {
+        position.setLocation(x, y);
+        this.repaint();
     }
 
     public void setSprites(String[] sprite_locs) {
@@ -116,31 +144,5 @@ public class Entity extends JComponent//this class is used for every living thin
         Inventory.addItem(hat);
     }
 
-    public void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        //g2.setClip((int)position.getX(), (int)position.getY(), get_curr_sprite().getWidth(), get_curr_sprite().getHeight());
-        g2.drawImage(get_curr_sprite(), (int) position.getX(), (int) position.getY(), this);
-    }
 
-    public BufferedImage get_curr_sprite() {
-        return curr_sprite;
-    }
-
-    public void set_curr_sprite(int index) {
-        curr_sprite = sprites[index];
-    }
-
-    public void moveTo(Point p, int duration) {
-        MoveThreader m = new MoveThreader(this, p, duration);
-
-    }
-
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(int x, int y) {
-        position.setLocation(x, y);
-        this.repaint();
-    }
 }
