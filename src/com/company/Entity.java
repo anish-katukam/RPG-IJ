@@ -11,9 +11,12 @@ import java.util.Random;
 
 public class Entity extends JComponent//this class is used for every living thing in the game
 {
+    protected Weapon weapon; //entities possess certain items
+    protected Hat hat;
     protected volatile Point position = new Point();
     protected Potion potion;
     protected Ring ring;
+    protected Armor armor;
     protected BufferedImage curr_sprite;
     protected Stats stats; // object containing the stats used for damage calculations
     protected BufferedImage sprites[] = new BufferedImage[4]; //4 sprites: 0 = motionless, 1 = walking left, 2 = walking right, 3 = low health
@@ -35,12 +38,25 @@ public class Entity extends JComponent//this class is used for every living thin
         }
     }
 
+    public Weapon getWeapon() //return items
+    {
+        return this.weapon;
+    }
+
+    public Hat getHat() {
+        return this.hat;
+    }
+
     public Potion getPotion() {
         return this.potion;
     }
 
     public Ring getRing() {
         return this.ring;
+    }
+
+    public Armor getArmor() {
+        return this.armor;
     }
 
     public Stats getStats() //return stats object
@@ -72,19 +88,19 @@ public class Entity extends JComponent//this class is used for every living thin
     public Item replace(Item x) //replace item in loadout to one from inventory
     {
         Item old = null;
-      //  if (x instanceof Armor) //if x is an instance of Armor
-     //   {
-     //       old = armor; //set old to the existing item
-    //        armor = (Armor) x; //cast x as Armor and set it to armor
-        if (x instanceof Potion) {
+        if (x instanceof Armor) //if x is an instance of Armor
+        {
+            old = armor; //set old to the existing item
+            armor = (Armor) x; //cast x as Armor and set it to armor
+        } else if (x instanceof Potion) {
             old = potion;
             potion = (Potion) x;
-        //} else if (x instanceof Weapon) {
-        //    old = weapon;
-        //    weapon = (Weapon) x;
-        //} else if (x instanceof Hat) {
-        //    old = hat;
-        //    hat = (Hat) x;
+        } else if (x instanceof Weapon) {
+            old = weapon;
+            weapon = (Weapon) x;
+        } else if (x instanceof Hat) {
+            old = hat;
+            hat = (Hat) x;
         } else if (x instanceof Ring) {
             old = ring;
             ring = (Ring) x;
@@ -94,10 +110,10 @@ public class Entity extends JComponent//this class is used for every living thin
 
     public void drop() //drop items, add to inventory (used when enemies are killed)
     {
-     //   Inventory.addItem(weapon); //call addItem method which adds them to the array
+        Inventory.addItem(weapon); //call addItem method which adds them to the array
         Inventory.addItem(ring);
-     //   Inventory.addItem(armor);
-     //   Inventory.addItem(hat);
+        Inventory.addItem(armor);
+        Inventory.addItem(hat);
     }
 
     public void paintComponent(Graphics g) {

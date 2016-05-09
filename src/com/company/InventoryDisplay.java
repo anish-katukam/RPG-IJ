@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class InventoryDisplay {
     public static JPanel InventoryDisplay() {
-
         JPanel panel = new JPanel(new GridLayout(5, 1));
 
         JLayeredPane healthPotionPane = new JLayeredPane();

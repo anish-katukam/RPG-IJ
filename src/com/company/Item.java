@@ -23,7 +23,7 @@ public abstract class Item {
         return desc;
     }
 
-  //  public abstract void explicate(TextIO t); //overloaded in each item to let it describe itself
+    public abstract void explicate(TextIO t); //overloaded in each item to let it describe itself
 
     public int getAttack() {
         return attack;

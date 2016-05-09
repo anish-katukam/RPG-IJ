@@ -1,7 +1,7 @@
 package com.company;
 
-public class Potion extends Item {
-    public Potion() {
+public class Hat extends Item {
+    public Hat() {
         super();
     }
 
@@ -13,9 +13,9 @@ public class Potion extends Item {
         t.blank(1);
         t.say("Health Granted: " + health);
         t.say("Energy Granted: " + energy);
+        t.say("Attack Granted: " + attack);
         t.say("Bloodlust Granted: " + bloodlust);
+        t.say("Defense Granted: " + defense);
     }
 }
-
-
 

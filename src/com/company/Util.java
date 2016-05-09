@@ -28,7 +28,7 @@ public abstract class Util {
 
     public static Point screenPointAdjust(Point p) //adjust for screen offset, just calibration
     {
-     //   p.setLocation(p.getX() - 160, p.getY() - 200); //calibrates point
+        p.setLocation(p.getX() - 160, p.getY() - 200); //calibrates point
         return p; //returns output
     }
 

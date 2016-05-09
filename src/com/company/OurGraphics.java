@@ -33,12 +33,8 @@ public class OurGraphics {
 
     ImageDrawer openingImage;
     ImageDrawer dimBackground;
-    protected boolean playerMoveEnabled=true;
-    public void setPlayerMoveEnabled(boolean toState) {
-        playerMoveEnabled = toState;
-    }
-    public OurGraphics() {
 
+    public OurGraphics() {
         JFXPanel fxPanel = new JFXPanel();
         Music.fetchTracks();
         Inventory.initializeInfoPanel();
@@ -125,19 +121,17 @@ public class OurGraphics {
                     dimScreen();
                     Music.playMenu();
                     inventoryPanel = Inventory.getInfoPanel();
-                    setPlayerMoveEnabled(false);
                     mainPane.add((inventoryPanel), new Integer(3));
                 }
                 if (e.getSource() == stats) { //If the source of the button press is the inventory button
                     dimScreen();
                     Music.playMenu();
-                    setPlayerMoveEnabled(false);
                 }
                 if (e.getSource() == menuBack) {
                     brightenScreen();
                     Music.stopMenu();
                     mainPane.remove(mainPane.getIndexOf(inventoryPanel));
-                    setPlayerMoveEnabled(true);
+
                 }
             }
         }
@@ -147,11 +141,10 @@ public class OurGraphics {
 
             public void mouseClicked(MouseEvent e) {
 
-                if (playerMoveEnabled) {
-                    MoveThreader.cancel();
-                    //GameLogic.character.moveTo(new Point((int) Util.screenPointAdjust(e.getPoint()).getX(), PiecewiseHandler.getY((int) Util.screenPointAdjust(e.getPoint()).getX(), Starter.getCurrentFrame())), 500);
-                    GameLogic.character.moveTo(new Point(e.getX(), e.getY()), 500);//Update this to work with the proper piecewise handler.
-                }
+
+                MoveThreader.cancel(); //Sid please comment code this
+                //GameLogic.character.moveTo(new Point((int) Util.screenPointAdjust(e.getPoint()).getX(), PiecewiseHandler.getY((int) Util.screenPointAdjust(e.getPoint()).getX(), Starter.getCurrentFrame())), 500);
+                GameLogic.character.moveTo(new Point(e.getX(), e.getY()), 500);//Update this to work with the proper piecewise handler.
             }
 
             public void mousePressed(MouseEvent e) {
